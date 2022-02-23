@@ -13,3 +13,8 @@ variable "project_id" {
   type        = string
   description = "GCP project id to create the resources"
 }
+
+variable "gke_master_ipv4_cidr_block" {
+  type    = string
+  default = "172.23.0.0/28"
+}
