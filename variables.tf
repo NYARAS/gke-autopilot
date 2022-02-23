@@ -20,26 +20,26 @@ variable "gke_master_ipv4_cidr_block" {
 }
 
 variable "mysql_location_preference" {
-  type = string
+  type    = string
   default = "europe-west1-b"
 }
 
 variable "mysql_machine_type" {
-  type = string
+  type    = string
   default = "db-n1-standard-2"
 }
 
 variable "mysql_database_version" {
-  type = string
+  type    = string
   default = "MYSQL_8_0"
 }
 
 variable "mysql_default_disk_size" {
-  type = string
+  type    = string
   default = "100"
 }
 
 variable "mysql_availability_type" {
-  type = string
+  type    = string
   default = "REGIONAL"
 }

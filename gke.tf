@@ -1,6 +1,6 @@
 resource "google_container_cluster" "private" {
   provider = google-beta
-  project = var.project_id
+  project  = var.project_id
 
   name     = "private"
   location = var.region

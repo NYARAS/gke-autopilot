@@ -1,12 +1,12 @@
 resource "random_string" "db_name_suffix" {
-  length = 4
+  length  = 4
   special = false
-  upper = false
+  upper   = false
 }
 
 resource "google_sql_database_instance" "mysql" {
-  name = "mysql-private-${random_string.db_name_suffix.result}"
-  region = var.region
+  name             = "mysql-private-${random_string.db_name_suffix.result}"
+  region           = var.region
   database_version = var.mysql_database_version
 
 
@@ -21,14 +21,14 @@ resource "google_sql_database_instance" "mysql" {
     disk_size = var.mysql_default_disk_size
 
     ip_configuration {
-      ipv4_enabled = false
+      ipv4_enabled    = false
       private_network = google_compute_network.custom.id
     }
 
     backup_configuration {
       binary_log_enabled = true
-      enabled = true
-      start_time = "06:00"
+      enabled            = true
+      start_time         = "06:00"
     }
   }
 
@@ -43,12 +43,12 @@ data "google_secret_manager_secret_version" "wordpress-admin-user-password" {
 }
 
 resource "google_sql_database" "wordpress" {
-    name = "wordpress"
-    instance = google_sql_database_instance.mysql.name
+  name     = "wordpress"
+  instance = google_sql_database_instance.mysql.name
 }
 
 resource "google_sql_user" "wordpress" {
-  name = "wordpress"
+  name     = "wordpress"
   instance = google_sql_database_instance.mysql.name
   password = data.google_secret_manager_secret_version.wordpress-admin-user-password.secret_data
 }
